@@ -105,7 +105,6 @@ void createGraph(node **H){
     int dst;
     int w;
     scanf("%d", &src);
-    // printf("srcId: %d\n", src);
     node *source = GetNode(src, H);
     if(source != 0){
         edge *ed = (edge*)malloc(sizeof(edge));
@@ -170,7 +169,7 @@ void createGraph(node **H){
             // printf("dest: %d, w: %d", curr->dest->nodeId, curr->weight);
             while(e_head){
                 if(e_head->dest == n){
-                    printf("!");
+                    // printf("!");
                     head->edges = curr->next;
                     edge *new = e_head;
                     free(new);

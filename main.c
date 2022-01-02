@@ -99,7 +99,7 @@ int main()
             TSP(num, &head);
         }
         if(ch == '\n') {
-            // delete_g(&head);
+            delete_g(&head);
             break;
         }
 
