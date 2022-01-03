@@ -266,7 +266,7 @@ void printGraph_cmd(node *H)
         return cou;
 }   
 
-    node * get_low_node(node **H){
+    node *get_low_node(node **H){
          node *tmp = *H;
          node *res = NULL;
          int max = 1000001;
@@ -366,7 +366,7 @@ void TSP(int num, node **H) {
     }
     permutation(H, cities, num, num);
     if(minPath == INF){
-        minPath = -1;
+        minPath = -2;
     }
     printf("TSP shortest path: %d \n", minPath);
 }
