@@ -120,6 +120,7 @@ void createGraph(node **H){
                 source->edges = ed;
             }
         }
+        else{free(ed);}
         edge *temp = ed;   
         while (scanf("%d", &dst) == 1)
         {
@@ -146,20 +147,23 @@ void createGraph(node **H){
         edge *tmp = e_head->next;
         if(tmp == NULL){
             free(e_head);
-            return;
+            // n->edges = NULL;
+            // return;
         }
-        while(e_head->next){
-            edge *tmp2 = tmp;
-            e_head->next = tmp->next;
-            free(tmp2);
-        }
+        else{
+            while(e_head->next){
+                edge *tmp2 = tmp;
+                e_head->next = tmp->next;
+                free(tmp2);
+            }
         free(e_head);
+        }
 
     }
 
     void remove_node(node **H, int del){
         // int del;
-        // printf("node to delete:");
+        // printf("node to delete:");s
         // scanf("%d", &del);
         node *n = GetNode(del, H);
         node *head = *H;
@@ -223,7 +227,7 @@ void createGraph(node **H){
     }
     
 // void deleteGraph_cmd(){
-//     pNode* tmp = &graphNodes;s
+//     pNode* tmp = &graphNodes;sj
 //     int nodeId;
 //     while (*tmp)
 //     {
@@ -366,7 +370,7 @@ void TSP(int num, node **H) {
     }
     permutation(H, cities, num, num);
     if(minPath == INF){
-        minPath = -2;
+        minPath = -1;
     }
     printf("TSP shortest path: %d \n", minPath);
 }
