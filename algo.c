@@ -29,6 +29,28 @@ node *createOneNode(int src, node **H){
     return lst;
 }
 
+    void free_edges_of_node(node *n){
+        edge *e_head = n->edges;
+        if(!e_head){
+            return;
+        }
+        edge *tmp = e_head->next;
+        if(tmp == NULL){
+            free(e_head);
+            n->edges = NULL;
+            // return;
+        }
+        else{
+            while(e_head->next){
+                edge *tmp2 = tmp;
+                e_head->next = tmp->next;
+                free(tmp2);
+            }
+        free(e_head);
+        }
+
+    }
+
    void insertNode(int i, node **H){
         int dst;
         int w;
@@ -101,6 +123,10 @@ void createNodes(int size, node **H){
     }
 }
 
+// void free_edges(int src, node **H){
+
+// }
+
 void createGraph(node **H){
     int src;
     int dst;
@@ -108,6 +134,9 @@ void createGraph(node **H){
     scanf("%d", &src);
     node *source = GetNode(src, H);
     if(source != 0){
+        if(source->edges != NULL){
+            free_edges_of_node(source);
+        }
         edge *ed = (edge*)malloc(sizeof(edge));
         if(!ed){
             return;
@@ -140,27 +169,7 @@ void createGraph(node **H){
     }
 }   
 
-    void free_edges_of_node(node *n){
-        edge *e_head = n->edges;
-        if(!e_head){
-            return;
-        }
-        edge *tmp = e_head->next;
-        if(tmp == NULL){
-            free(e_head);
-            n->edges = NULL;
-            // return;
-        }
-        else{
-            while(e_head->next){
-                edge *tmp2 = tmp;
-                e_head->next = tmp->next;
-                free(tmp2);
-            }
-        free(e_head);
-        }
 
-    }
 
     void remove_node(node **H, int del){
         // int del;
