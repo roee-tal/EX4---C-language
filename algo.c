@@ -66,8 +66,9 @@ node *createOneNode(int src, node **H){
         int node_id;
         while(tmp){
             node_id = tmp->nodeId;
-            remove_node(H, node_id);
             tmp = tmp->next;
+            remove_node(H, node_id);
+            
         }
         *H = NULL;
     }
@@ -147,7 +148,7 @@ void createGraph(node **H){
         edge *tmp = e_head->next;
         if(tmp == NULL){
             free(e_head);
-            // n->edges = NULL;
+            n->edges = NULL;
             // return;
         }
         else{
